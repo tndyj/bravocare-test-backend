@@ -14,6 +14,10 @@ app.get('/', (req, res) => {
 app.use('/shifts', shifts);
 app.use('/queries', queries);
 
+app.use((err, req, res, next) => {
+  res.status(500).send('Internal server error!');
+});
+
 const port = process.env.PORT || 4000;
 app.listen(port, () => {
   console.log(`Test API running on port ${port}`);
