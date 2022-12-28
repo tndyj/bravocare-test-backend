@@ -31,7 +31,8 @@ function getQuery5Result(req, res, next) {
         select n.nurse_id, count(j.job_id) as total_jobs from nurses as n
         left join jobs j on n.nurse_type=j.nurse_type_needed
         group by n.nurse_id
-      ) as n2 on n1.nurse_id=n2.nurse_id`
+      ) as n2 on n1.nurse_id=n2.nurse_id
+      order by nurse_id`
     )
     .then((result) => res.json(result.rows))
     .catch(next);
